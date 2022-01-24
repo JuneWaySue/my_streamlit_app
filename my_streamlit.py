@@ -130,18 +130,23 @@ def main():
     sessions = Server.get_current()._session_info_by_id
     session_ws = sessions[session_id].ws
     st.sidebar.info(f'当前在线人数：{len(sessions)}')
-    if session_ws is not None:
-        session_headers = session_ws.request.headers
-        if 'Windows' not in session_headers['User-Agent']:
-            st.info(f"Sorry!!!  \nOnly show videos on PC")
-        else:
-            col1,col2=st.columns(2)
-            video1=get_video_bytes('开不了口')
-            col1.video(video1)
-            video2=get_video_bytes('最长的电影')
-            col2.video(video2, format='video/mp4')
-    else:
-        st.info('Please refresh the page.')
+    col1,col2=st.columns(2)
+    video1=get_video_bytes('开不了口')
+    col1.video(video1)
+    video2=get_video_bytes('最长的电影')
+    col2.video(video2, format='video/mp4')
+    # if session_ws is not None:
+    #     session_headers = session_ws.request.headers
+    #     if 'Windows' not in session_headers['User-Agent']:
+    #         st.info(f"Sorry!!!  \nOnly show videos on PC")
+    #     else:
+    #         col1,col2=st.columns(2)
+    #         video1=get_video_bytes('开不了口')
+    #         col1.video(video1)
+    #         video2=get_video_bytes('最长的电影')
+    #         col2.video(video2, format='video/mp4')
+    # else:
+    #     st.info('Please refresh the page.')
 
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
