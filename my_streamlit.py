@@ -127,7 +127,9 @@ def main():
 
     st.markdown('### Some Ads Videos')
     session_id = get_report_ctx().session_id
-    session_ws = Server.get_current()._session_info_by_id[session_id].ws
+    sessions = Server.get_current()._session_info_by_id
+    session_ws = sessions[session_id].ws
+    st.sidebar.info(f'当前在线人数：{len(sessions)}')
     if session_ws is not None:
         session_headers = session_ws.request.headers
         if 'Windows' not in session_headers['User-Agent']:
