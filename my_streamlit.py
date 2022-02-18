@@ -11,7 +11,7 @@ import streamlit.components.v1 as components
 from streamlit_echarts import st_echarts
 
 from streamlit.server.server import Server
-from streamlit.report_thread import get_report_ctx
+from streamlit.script_run_context import get_script_run_ctx as get_report_ctx
 
 import graphviz
 import pydeck as pdk
@@ -131,9 +131,8 @@ def main():
     session_ws = sessions[session_id].ws
     st.sidebar.info(f'当前在线人数：{len(sessions)}')
     col1,col2=st.columns(2)
-    video1=get_video_bytes('开不了口')
-    col1.video(video1)
-    video2=get_video_bytes('最长的电影')
+    video1,video2=get_video_bytes()
+    col1.video(video1, format='video/mp4')
     col2.video(video2, format='video/mp4')
     # if session_ws is not None:
     #     session_headers = session_ws.request.headers
@@ -343,12 +342,15 @@ def get_audio_bytes(music):
     audio_file.close()
     return audio_bytes
 
-@st.cache
-def get_video_bytes(video):
-    video_file = open(f'video/{video}-广告曲.mp4', 'rb')
-    video_bytes = video_file.read()
+@st.experimental_singleton
+def get_video_bytes():
+    video_file = open(f'video/开不了口-广告曲.mp4', 'rb')
+    video_bytes1 = video_file.read()
     video_file.close()
-    return video_bytes
+    video_file = open(f'video/最长的电影-广告曲.mp4', 'rb')
+    video_bytes2 = video_file.read()
+    video_file.close()
+    return video_bytes1,video_bytes2
 
 if __name__ == '__main__':
     main()
