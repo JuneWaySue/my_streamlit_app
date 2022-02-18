@@ -132,7 +132,7 @@ def main():
     st.sidebar.info(f'当前在线人数：{len(sessions)}')
     col1,col2=st.columns(2)
     video1,video2=get_video_bytes()
-    col1.video(video1, format='video/mp4')
+    col1.video(video1, format='video/mp4', start_time=1)
     col2.video(video2, format='video/mp4')
     # if session_ws is not None:
     #     session_headers = session_ws.request.headers
