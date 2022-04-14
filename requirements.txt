@@ -13,3 +13,4 @@ Pillow
 streamlit-player
 streamlit-echarts
 pyecharts
+pyautogui

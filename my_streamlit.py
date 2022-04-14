@@ -66,6 +66,9 @@ def main():
     color = st.sidebar.color_picker('Pick A Color You Like', '#520520')
     st.sidebar.write('The current color is', color)
 
+    if st.button('hehe'):
+        1/0
+
     with st.container():
         st.markdown(f'### {city} Weather Forecast')
         forecastToday,df_forecastHours,df_forecastDays=get_city_weather(st.session_state.city_mapping[city])
@@ -355,4 +358,7 @@ def get_video_bytes():
     return video_bytes1,video_bytes2
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        pyautogui.hotkey("ctrl","F5")
