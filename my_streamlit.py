@@ -6,6 +6,7 @@ import datetime
 import requests
 import numpy as np
 import pandas as pd
+import pyautogui
 import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_echarts import st_echarts
