@@ -337,7 +337,7 @@ def get_city_weather(cityId):
     df_forecastDays=pd.DataFrame(forecastDays).set_index('PredictDate')
     return forecastToday,df_forecastHours,df_forecastDays
 
-@st.cache(ttl=24*3600)
+@st.experimental_singleton
 def get_audio_bytes(music):
     audio_file = open(f'music/{music}-周杰伦.mp3', 'rb')
     audio_bytes = audio_file.read()
