@@ -66,9 +66,6 @@ def main():
     color = st.sidebar.color_picker('Pick A Color You Like', '#520520')
     st.sidebar.write('The current color is', color)
 
-    if st.button('hehe'):
-        1/0
-
     with st.container():
         st.markdown(f'### {city} Weather Forecast')
         forecastToday,df_forecastHours,df_forecastDays=get_city_weather(st.session_state.city_mapping[city])
