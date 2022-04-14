@@ -49,6 +49,7 @@ def main():
         st.session_state.city_mapping,st.session_state.random_city_index=get_city_mapping()
         # st.session_state.random_city_index=random.choice(range(len(st.session_state.city_mapping)))
         st.balloons()
+        st.snow()
 
     music=st.sidebar.radio('Select Music You Like',['七里香','稻香'],index=random.choice(range(2)))
     st.sidebar.write(f'正在播放 {music}-周杰伦 :musical_note:')
@@ -169,7 +170,7 @@ def my_hash_func(my_random):
     num = my_random.random_num
     return num
 
-@st.cache(hash_funcs={MyRandom: my_hash_func},allow_output_mutation=True)
+@st.cache(hash_funcs={MyRandom: my_hash_func},allow_output_mutation=True,ttl=24*3600)
 def get_chart_data(chart,my_random):
     data=np.random.randn(20,3)
     df=pd.DataFrame(data,columns=['a', 'b', 'c'])
@@ -244,7 +245,7 @@ def get_chart_data(chart,my_random):
         }
         return options
 
-@st.cache(hash_funcs={MyRandom: my_hash_func},suppress_st_warning=True)
+@st.cache(hash_funcs={MyRandom: my_hash_func},suppress_st_warning=True,ttl=24*3600)
 def get_pictures(my_random):
     def _get_one(url,what):
         try:
@@ -267,7 +268,7 @@ def get_pictures(my_random):
 
     return imgs
 
-@st.cache
+@st.cache(ttl=24*3600)
 def get_city_mapping():
     url='https://h5ctywhr.api.moji.com/weatherthird/cityList'
     r=requests.get(url)
@@ -285,7 +286,7 @@ def get_city_mapping():
 
     return city_mapping,guangzhou
 
-@st.cache
+@st.cache(ttl=24*3600)
 def get_city_weather(cityId):
     url='https://h5ctywhr.api.moji.com/weatherDetail'
     headers={'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
@@ -335,7 +336,7 @@ def get_city_weather(cityId):
     df_forecastDays=pd.DataFrame(forecastDays).set_index('PredictDate')
     return forecastToday,df_forecastHours,df_forecastDays
 
-@st.cache
+@st.cache(ttl=24*3600)
 def get_audio_bytes(music):
     audio_file = open(f'music/{music}-周杰伦.mp3', 'rb')
     audio_bytes = audio_file.read()

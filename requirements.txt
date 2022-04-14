@@ -1,7 +1,7 @@
 requests
 pandas
 numpy
-streamlit==1.5.1
+streamlit
 click==8
 matplotlib
 altair
