@@ -171,7 +171,7 @@ def my_hash_func(my_random):
     num = my_random.random_num
     return num
 
-@st.cache(hash_funcs={MyRandom: my_hash_func},allow_output_mutation=True,ttl=24*3600)
+@st.cache(hash_funcs={MyRandom: my_hash_func},allow_output_mutation=True,ttl=3600)
 def get_chart_data(chart,my_random):
     data=np.random.randn(20,3)
     df=pd.DataFrame(data,columns=['a', 'b', 'c'])
@@ -246,7 +246,7 @@ def get_chart_data(chart,my_random):
         }
         return options
 
-@st.cache(hash_funcs={MyRandom: my_hash_func},suppress_st_warning=True,ttl=24*3600)
+@st.cache(hash_funcs={MyRandom: my_hash_func},suppress_st_warning=True,ttl=3600)
 def get_pictures(my_random):
     def _get_one(url,what):
         try:
@@ -269,7 +269,7 @@ def get_pictures(my_random):
 
     return imgs
 
-@st.cache(ttl=24*3600)
+@st.cache(ttl=3600)
 def get_city_mapping():
     url='https://h5ctywhr.api.moji.com/weatherthird/cityList'
     r=requests.get(url)
@@ -287,7 +287,7 @@ def get_city_mapping():
 
     return city_mapping,guangzhou
 
-@st.cache(ttl=24*3600)
+@st.cache(ttl=3600)
 def get_city_weather(cityId):
     url='https://h5ctywhr.api.moji.com/weatherDetail'
     headers={'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
