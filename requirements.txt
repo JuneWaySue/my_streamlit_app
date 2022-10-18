@@ -6,7 +6,7 @@ click==8
 matplotlib
 altair
 plotly
-PyDeck
+PyDeck==0.7.1
 graphviz
 scipy
 Pillow
