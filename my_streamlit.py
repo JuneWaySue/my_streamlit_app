@@ -250,12 +250,13 @@ def get_chart_data(chart,my_random):
 def get_pictures(my_random):
     def _get_one(url,what):
         try:
-            img=Image.open(BytesIO(requests.get(requests.get(url).json()[what]).content))
+            img=Image.open(BytesIO(requests.get(requests.get(url,timeout=30).json()[what]).content))
             return img
         except Exception as e:
             if 'cannot identify image file' in str(e):
                 return _get_one(url,what)
-        return False
+            else:
+                return False
     imgs={}
     mapping={
         'https://aws.random.cat/meow':{'name':'A Cat Picture','what':'file'},
