@@ -164,9 +164,9 @@ def main():
             code=f.read()
         st.code(code,language="python")
 
-    with st.expander("serect"):
-        serect=st.text_input('')
-        if serect != '' and serect == st.serect['serect']:
+    with st.expander("secret"):
+        secret=st.text_input('')
+        if secret != '' and secret == st.secrets['secret']:
             v2_text=get_v2_text()
             st.text(v2_text)
         else:
