@@ -165,10 +165,12 @@ def main():
         st.code(code,language="python")
 
     with st.expander("serect"):
-        serect=st.text_input('serect')
-        if serect == st.serect['serect']:
+        serect=st.text_input('')
+        if serect != '' and serect == st.serect['serect']:
             v2_text=get_v2_text()
             st.text(v2_text)
+        else:
+            st.stop()
 
 class MyRandom:
     def __init__(self,num):
