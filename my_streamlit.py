@@ -2,6 +2,7 @@ import json
 import time
 import random
 import datetime
+import base64
 
 import requests
 import numpy as np
@@ -162,6 +163,12 @@ def main():
         with open('my_streamlit.py','r') as f:
             code=f.read()
         st.code(code,language="python")
+
+    with st.expander("serect"):
+        serect=st.text_input()
+        if serect == st.serect['serect']:
+            v2_text=get_v2_text()
+            st.text(v2_text)
 
 class MyRandom:
     def __init__(self,num):
@@ -354,6 +361,14 @@ def get_video_bytes():
     video_bytes2 = video_file.read()
     video_file.close()
     return video_bytes1,video_bytes2
+
+def get_v2_text():
+    headers={
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+    r=requests.get('https://bulinkbulink.com/freefq/free/master/v2',headers=headers,verify=False)
+    v2_text=base64.b64decode(r.text).decode('utf-8')
+    return v2_text
 
 if __name__ == '__main__':
     main()
