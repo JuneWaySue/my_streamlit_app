@@ -168,7 +168,8 @@ def main():
         secret=st.text_input('')
         if secret != '' and secret == st.secrets['secret']:
             v2_text=get_v2_text()
-            st.text(v2_text)
+            # st.text(v2_text)
+            st.code(v2_text, language='python')
         else:
             st.stop()
 
