@@ -164,11 +164,10 @@ def main():
             code=f.read()
         st.code(code,language="python")
 
-    with st.expander("secret"):
-        secret=st.text_input('')
+    with st.expander("secret",expanded=True):
+        secret=st.text_input('Please enter the password.')
         if secret != '' and secret == st.secrets['secret']:
             v2_text=get_v2_text()
-            # st.text(v2_text)
             st.code(v2_text, language='python')
         else:
             st.stop()
