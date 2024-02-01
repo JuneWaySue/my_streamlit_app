@@ -165,7 +165,7 @@ def main():
         st.code(code,language="python")
 
     with st.expander("serect"):
-        serect=st.text_input()
+        serect=st.text_input('serect')
         if serect == st.serect['serect']:
             v2_text=get_v2_text()
             st.text(v2_text)
