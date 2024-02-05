@@ -79,30 +79,30 @@ def main():
         col6.metric('UpdateTime',forecastToday['updateTime'])
         c1 = (
             Line()
-            .add_xaxis(df_forecastHours.index.to_list())
-            .add_yaxis('Temperature', df_forecastHours.Temperature.values.tolist())
-            .add_yaxis('Body Temperature', df_forecastHours['Body Temperature'].values.tolist())
+            .add_xaxis(xaxis_data=df_forecastHours.index.to_list())
+            .add_yaxis(series_name='Temperature', y_axis=df_forecastHours['Temperature'].values.tolist())
+            .add_yaxis(series_name='Body Temperature', y_axis=df_forecastHours['Body Temperature'].values.tolist())
             .set_global_opts(
                 title_opts=opts.TitleOpts(title="24 Hours Forecast"),
                 xaxis_opts=opts.AxisOpts(type_="category"),
                 yaxis_opts=opts.AxisOpts(type_="value",axislabel_opts=opts.LabelOpts(formatter="{value} °C")),
                 tooltip_opts=opts.TooltipOpts(trigger="axis", axis_pointer_type="cross")
                 )
-            .set_series_opts(label_opts=opts.LabelOpts(formatter=JsCode("function(x){return x.data[1] + '°C';}")))
+            .set_series_opts(label_opts=opts.LabelOpts(is_show=True,formatter=JsCode("function(x){return x.data[1] + '°C';}")))
         )
 
         c2 = (
             Line()
             .add_xaxis(xaxis_data=df_forecastDays.index.to_list())
-            .add_yaxis(series_name="High Temperature",y_axis=df_forecastDays.Temperature.apply(lambda x:int(x.replace('°C','').split('~')[1])))
-            .add_yaxis(series_name="Low Temperature",y_axis=df_forecastDays.Temperature.apply(lambda x:int(x.replace('°C','').split('~')[0])))
+            .add_yaxis(series_name="High Temperature",y_axis=df_forecastDays.Temperature.apply(lambda x:int(x.replace('°C','').split('~')[1])).values.tolist())
+            .add_yaxis(series_name="Low Temperature",y_axis=df_forecastDays.Temperature.apply(lambda x:int(x.replace('°C','').split('~')[0])).values.tolist())
             .set_global_opts(
                 title_opts=opts.TitleOpts(title="7 Days Forecast"),
                 xaxis_opts=opts.AxisOpts(type_="category"),
                 yaxis_opts=opts.AxisOpts(type_="value",axislabel_opts=opts.LabelOpts(formatter="{value} °C")),
                 tooltip_opts=opts.TooltipOpts(trigger="axis", axis_pointer_type="cross")
                 )
-            .set_series_opts(label_opts=opts.LabelOpts(formatter=JsCode("function(x){return x.data[1] + '°C';}")))
+            .set_series_opts(label_opts=opts.LabelOpts(is_show=True,formatter=JsCode("function(x){return x.data[1] + '°C';}")))
         )
 
         t = Timeline(init_opts=opts.InitOpts(theme=ThemeType.LIGHT,width='1200px'))
@@ -153,14 +153,14 @@ def main():
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('### About Me')
-    with open('README.md','r') as f:
+    with open('README.md','r',encoding='utf-8') as f:
         readme=f.read()
     st.markdown(readme)
 
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
     with st.expander("View Code"):
-        with open('my_streamlit.py','r') as f:
+        with open('my_streamlit.py','r',encoding='utf-8') as f:
             code=f.read()
         st.code(code,language="python")
 
