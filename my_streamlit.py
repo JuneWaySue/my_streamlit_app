@@ -167,7 +167,7 @@ def main():
     with st.expander("secret",expanded=True):
         secret=st.text_input('Please enter the password.')
         if secret != '' and secret == st.secrets['secret']:
-            v2_text=get_v2_text()
+            v2_text='haha'
             st.code(v2_text, language='python')
         else:
             st.stop()
@@ -363,33 +363,6 @@ def get_video_bytes():
     video_bytes2 = video_file.read()
     video_file.close()
     return video_bytes1,video_bytes2
-
-def get_v2_text():
-    headers={
-        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    }
-    # r=requests.get('https://bulinkbulink.com/freefq/free/master/v2',headers=headers,verify=False)
-    # v2_text=base64.b64decode(r.text).decode('utf-8')
-
-    url='https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/All_Configs_Sub.txt'
-    for _ in range(10):
-        try:
-            r=requests.get(url,headers=headers,timeout=3600)
-            v2_text=''
-            for i in r.text.split('\n'):
-                if '🔒' in i:
-                    break
-                if i.startswith('vmess:') or i.startswith('ss:') or i.startswith('trojan:'):
-                    v2_text+=f'{i}\n'
-            v2_text=v2_text.strip() if v2_text != '' else 'None'
-        except:
-            pass
-        else:
-            break
-    else:
-        v2_text='Please get again.'
-
-    return v2_text
 
 if __name__ == '__main__':
     main()
