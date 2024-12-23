@@ -7,3 +7,13 @@
 - wechat： **[Python王者之路](https://user-images.githubusercontent.com/45711125/234814025-af439d36-d595-434d-bb51-e138b0c7738d.jpg)**
 - csdn：**[七里香还是稻香](https://blog.csdn.net/sinat_39629323)**
 - github：**[JuneWaySue](https://github.com/JuneWaySue)**
+
+---
+
+<a href="https://star-history.com/#JuneWaySue/my_streamlit_app&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=JuneWaySue/my_streamlit_app&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=JuneWaySue/my_streamlit_app&type=Date" />
+   <img alt="Star History Chart" src="https://avatars.githubusercontent.com/u/45711125?v=4" />
+ </picture>
+</a>
