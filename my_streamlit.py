@@ -157,7 +157,7 @@ def main():
         readme=f.read()
         readme,start_chart=readme.split('---')
     st.markdown(readme+'---')
-    components.html(start_chart, width=1200, height=520)
+    components.html(start_chart, width=1200, height=600)
 
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
