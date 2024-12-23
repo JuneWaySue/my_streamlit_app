@@ -155,7 +155,9 @@ def main():
     st.markdown('### About Me')
     with open('README.md','r',encoding='utf-8') as f:
         readme=f.read()
-    st.markdown(readme)
+        readme,start_chart=readme.split('---')
+    st.markdown(readme+'---')
+    components.html(start_chart, width=1200, height=520)
 
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
